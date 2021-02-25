@@ -1,0 +1,33 @@
+.top{
+	background-color:#5c00e6;
+}
+.top1{
+	background-color:rgba(0, 45, 179,0.2);
+}
+.logo{
+	height:8%;
+	width: 8%;
+}
+
+
+.banner{
+	background-image: url("../img/img1.jpg");
+	background-size:cover;
+
+}
+.slide{
+	background-color: rgba(0,0,0,0.4);
+}
+
+.carousel-inner{
+	height: 350px;
+}
+.top2{
+	background-color:rgba(0, 0, 0,0.8);
+	color: white;
+}
+.top3{
+	background-color: #99b3ff;
+	color: white;
+
+}
