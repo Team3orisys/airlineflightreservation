@@ -31,3 +31,38 @@
 	color: white;
 
 }
+
+.main-header.fixed-menu{
+	position:fixed;
+	left:0px;
+	top:0px;
+	width:100%;
+	padding: 0px;
+	background:#000000;
+	z-index: 1;
+}
+.main-header.fixed-menu{
+	padding:0px;
+	box-shadow:0 0 8px 0 rgba(0,0,0,0.12);
+	border-radius:0;
+}
+/*index page ends*/
+
+/******admin home nav bar*****/
+
+.submenu{
+	display:none;
+
+}
+
+.menubar ul li:hover .submenu {
+	display:block;
+	position:absolute;
+	background-color:#ffff;
+
+	border-radius:5px;
+	margin-left:-15	px;
+	margin-top:1px;
+	
+	
+}
