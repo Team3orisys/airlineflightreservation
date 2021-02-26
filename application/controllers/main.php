@@ -93,7 +93,7 @@ $this->load->library(array('session'));
 $this->session->set_userdata(array('id'=>(int)$user->id,'utype'=>$user->utype));
 if($_SESSION['utype']=='0')
 {
-redirect(base_url().'main/flightsearch');
+redirect(base_url().'main/admin');
 }
 
 elseif ($_SESSION['utype']=='1')
@@ -126,19 +126,240 @@ public function passenger()
 $this->load->view('passenger');
 }
 
-/*  passenger view of profile */
-public function profile()
+/*  passenger view of profile  for updation*/
+public function passprofile()
 
 {
-$this->load->view('passprofile');
-}
+
+		
+		$this->load->model('mainmodel');
+		$id=$this->session->id;
+		$data['user_data']=$this->mainmodel->updateform($id);
+		$this->load->view('passprofile',$data);
+
+	}
+	public function updatedetails1()
+	{
+		$a=array("fname"=>$this->input->post("fname"),
+			"lname"=>$this->input->post("lname"),
+			"age"=>$this->input->post("age"),
+			"gender"=>$this->input->post("gender"),
+			"address"=>$this->input->post("address"),
+			"district"=>$this->input->post("district"),
+			"phno"=>$this->input->post("phno"));
+		$b=array("email"=>$this->input->post("email"));
+		$this->load->model('mainmodel');
+		
+		if($this->input->post("update"))
+		{
+			$id=$this->session->id;
+			$this->mainmodel->updates($a,$b,$id);
+			redirect('main/passprofile','refresh');
+		}
+
+	}
+
 
 /* passenger:view flight details*/
-public function flight()
+// public function flightsss()
+
+// {
+// $this->load->view('flight');
+// }
+
+//passenger ::ends
+
+/*************notification*******************/
+
+//admin adding notification
+public function notification()
 
 {
-$this->load->view('flight');
+		$this->load->model('mainmodel');
+		$data['n']=$this->mainmodel->flightname();
+		$this->load->view('notification',$data); 
 }
+
+//action
+public function notify_action()
+	{
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules("noti","notification",'required')
+		;
+
+
+		
+
+		if($this->form_validation->run())
+		{
+
+			
+			$this->load->model('mainmodel');
+
+			$n=array("notification"=>$this->input->post("noti"),"f_id"=>$this->input->post("flight"),"cdate"=>date('y-m-d'));
+
+			$this->mainmodel->notifymodel($n);
+			redirect('main/notification','refresh');
+		}	
+	}
+
+//insertion of notification ends
+
+//admin view of notification	
+
+	public function notiadmin()
+	{
+		
+		$this->load->model('mainmodel');
+		$date=date('y-m-d');// for auto delete of notification
+ 		$this->mainmodel->notidelete($date);
+		$data['n']=$this->mainmodel->admin_notify();
+		$this->load->view('admin_notify_view',$data);
+
+	}
+
+	/*notification:admin delete*/
+	public function notify_delete()
+	{
+		$id=$this->uri->segment(3);
+		$this->load->model('mainmodel');
+		$this->mainmodel->admin_delete($id);
+		redirect('main/notiadmin','refresh');
+	}
+
+	/*notification :admin update*/
+
+	public function admin_update()
+	{
+		
+		$a=array("notification"=>$this->input->post("noti"));
+		$this->load->model('mainmodel');
+		$id=$this->uri->segment(3);
+
+		$data['user_data']=$this->mainmodel->singledata($id);
+		$this->mainmodel->singleselect();
+		$this->load->view('update_noti_view',$data);
+		if($this->input->post("update"))
+		{
+			$this->mainmodel->updatedetails($a,$this->input->post("id"));
+			redirect('main/notiadmin','refresh');
+		}
+	}
+
+	
+ 
+/*------------------notification ends-----------------*/
+
+
+/*admin home page*/
+public function admin()
+
+{
+$this->load->view('admin');
+}
+
+/* ------------ filght -------------------------------*/
+
+
+public function flights()
+{
+	$this->load->model('mainmodel');
+	$data['n']=$this->mainmodel->flights();
+	$this->load->view('flight',$data);
+}
+
+public function flightreg()
+
+{
+	$this->load->view('flightreg');
+}
+ public function flight()
+ {
+
+ 	$this->load->library('form_validation');
+		$this->form_validation->set_rules("airlinename","airlinename",'required');
+		$this->form_validation->set_rules("departure","departure",'required');
+		$this->form_validation->set_rules("arrival","arrival",'required');
+		$this->form_validation->set_rules("date","date",'required');
+		$this->form_validation->set_rules("dtime","dtime",'required');
+		$this->form_validation->set_rules("atime","atime",'required');
+		$this->form_validation->set_rules("cost","cost",'required');
+		$this->form_validation->set_rules("seatcapacity","seatcapacity",'required');
+		$this->form_validation->set_rules("business","business",'required');
+		$this->form_validation->set_rules("economy","economy",'required');
+		$this->form_validation->set_rules("first","first",'required');
+		
+		
+		if($this->form_validation->run())
+		{
+			$this->load->model('mainmodel');
+		$a=array("airlinename"=>$this->input->post("airlinename"),
+			"departure"=>$this->input->post("departure"),
+			"arrival"=>$this->input->post("arrival"),
+			"date"=>$this->input->post("date"),
+			"dtime"=>$this->input->post("dtime"),
+			"atime"=>$this->input->post("atime"),
+			"cost"=>$this->input->post("cost"),
+			"seatcapacity"=>$this->input->post("seatcapacity"),
+			"business"=>$this->input->post("business"),
+			"economy"=>$this->input->post("economy"),
+			"first"=>$this->input->post("first"));
+			$this->mainmodel->flightregist($a);
+			redirect(base_url().'main/flightreg');
+		
+		
+
+	    }
+
+
+ }
+
+
+
+
+public function updateflight()
+{
+	$this->load->model('mainmodel');
+	$id=$this->session->id;
+	$data['user_data']=$this->mainmodel->fupdate($id);
+	$this->load->view('updateflight',$data);
+}
+
+
+public function flightupdate()
+	{
+		$a=array("airlinename"=>$this->input->post("airlinename"),
+			"departure"=>$this->input->post("departure"),
+			"arrival"=>$this->input->post("arrival"),
+			"date"=>$this->input->post("date"),
+			"dtime"=>$this->input->post("dtime"),
+			"atime"=>$this->input->post("atime"),
+			"cost"=>$this->input->post("cost"),
+			"seatcapacity"=>$this->input->post("seatcapacity"),
+			"business"=>$this->input->post("business"),
+			"economy"=>$this->input->post("economy"),
+			"first"=>$this->input->post("first"));
+			$this->load->model('mainmodel');
+		
+		if($this->input->post("update"))
+		{
+			$id=$this->session->id;
+			$this->mainmodel->updateflight($a,$id);
+			redirect('main/updateflight','refresh');
+		}
+
+	}
+
+ 	public function deleteflight()
+ 	{
+ 		$id=$this->session->id;
+ 		$this->load->model('mainmodel');
+		$this->mainmodel->flightdelete($id);
+ 	}
+
+
+
+
 
 
 
