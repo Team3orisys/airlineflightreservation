@@ -10,19 +10,6 @@
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
             <!------custom style------->
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('/css/index_style.css');?>" media="all"/>
-<style>
-  table,tr,td,th
-    {
-      /*border:2px solid;*/
-      border-collapse: collapse;
-      padding: 10px;
-      margin: 80px;
-      margin-right: 100px;
-      background-color: rgb(51, 102, 255);
-      color: white;
-
-    }
-</style>
     </head>
   <body class="overhidden">
     <header>
@@ -79,49 +66,73 @@
       </div>
     </div> 
  </nav>
- <!-----------------------------end------------------->
- <!---------------------section---------------------->
- <form action="<?php echo base_url()?>main/flights" method="post">
- <h1>flight details</h1>
- <table class="text-center">
-      <tr>
-        <th>Airline Name</th><th>Departure</th><th>Arrival</th><th>Date</th><th>Departure Time</th>
-        <th>Arrival Time</th><th>Cost</th><th>Seating Capacity</th><th>Bussiness</th><th>Economy</th><th>First</th><th colspan="2">Action</th>
-      </tr>
-      <?php
-        if($n->num_rows()>0)
-        {
-          foreach($n->result() as $row)
-          {
-        ?>
-      <tr>
-        <td><?php echo $row->airlinename; ?></td>
-        <td><?php echo $row->departure; ?></td>
-        <td><?php echo $row->arrival; ?></td>
-        <td><?php echo $row->date; ?></td>
-        <td><?php echo $row->dtime; ?></td>
-        <td><?php echo $row->atime; ?></td>
-        <td><?php echo $row->cost; ?></td>
-        <td><?php echo $row->seatcapacity; ?></td>
-        <td><?php echo $row->business; ?></td>
-        <td><?php echo $row->economy; ?></td> 
-        <td><?php echo $row->first; ?></td> 
-        <input type="hidden" name="id" value="<?php echo $row->id;?>">
-        <td><a href="<?php echo base_url()?>main/updateflight/<?php echo $row->id;?>" class="text-decoration-none text-white ">Update</a></td>
-        <td><a href="<?php echo base_url()?>main/deleteflight/<?php echo $row->id;?>" class="text-decoration-none text-white ">Delete</a></td>
-      </tr>
-      <?php
-    }
-  }
-  ?>
-    </table>
-  </form>
+<!--nav end-->
+<section>
+
+<div class="container ">
+<div class="row">
+<div class="container col-5 ms-5">
+<h3 class="text-center text-primary mt-5">ADD FLIGHTS</h3>
+<form  method="post" action="<?php echo base_url()?>main/flight" class=" ">
+
+<fieldset>
+
+
+<label class=>Airline Name</label>
+<input type="text" name="airlinename" placeholder="airlinename" required maxlength="25" pattern="[a-zA-Z]+" class="form-control">
+
+<label class="">Departure</label>
+<input type="text" name="departure"  placeholder="departure" required maxlength="25" pattern="[a-zA-Z]+" class="form-control">
+
+
+<label class="form-label">Arrival</label>
+<input type="text" name="arrival"  required class="form-control"><br>
+
+
+<label class="">Date</label>
+<input type="date" name="date"required  pattern="[7-9]{1}[0-9]{9}" class="form-control">
+ 
+ 
+<label class="form-label">Departure Time</label>
+<input type="text" name="dtime"  required class="form-control"><br>
+
+<label class="form-label">Arrival Time</label>
+<input type="text" name="atime"  required class="form-control"><br>
+
+<label class="form-label">Cost</label>
+<input type="text" name="cost"  required class="form-control"><br>
+
+<label class="form-label">Seat Capacity</label>
+<input type="text" name="seatcapacity"  required class="form-control"><br>
+
+<label class="form-label">Bussiness</label>
+<input type="text" name="business"  required class="form-control"><br>
+
+<label class="form-label">Economy</label>
+<input type="text" name="economy"  required class="form-control"><br>
+
+<label class="form-label">First</label>
+<input type="text" name="first"  required class="form-control"><br>
+
+<div class="container text-center">
+
+<input type="submit" name="submit" value="Register" class="btn btn-primary w-50 mt-3  mb-3">
+</div>
+
+
+</fieldset>
+
+
+</form>
+</div>
+
+<div class="col-7">
+</div>
+
+</div class="">
+</div>
+</section >
+
 </body>
 </html>
 
-
-
-
-
-</body>
-</html>

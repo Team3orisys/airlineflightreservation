@@ -46,9 +46,10 @@
 
 <!----menu section-->
 <section class="banner" id="home">
+<header class="main-header">	
 <nav class="navbar navbar-expand-lg top1 sticky-top">
     <div class="container">
-    	 <img src="../img/logo.png" class="logo">
+    	 <img src="img/logo.png" class="logo">
         <a href="" class="text-decoration-none text-white">TRAVEL KITE</a>
         
         <div class="collapse navbar-collapse">
@@ -75,7 +76,7 @@
         </div>
     </div>
 </nav>
-
+</header>
     <div class="container-fluid slide">
         <div class="container">
             <div class="row vh-100">
@@ -118,17 +119,17 @@
 		<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
 		 	<div class="carousel-inner">
 			    <div class="carousel-item active">
-			      <img src="../img/1a.jpg" class="d-block w-100" alt="image">
+			      <img src="img/1a.jpg" class="d-block w-100" alt="image">
 			      
 			    </div>
 
 			    <div class="carousel-item">
-			      <img src="../img/2a.jpg" class="d-block w-100" alt="image">
+			      <img src="img/2a.jpg" class="d-block w-100" alt="image">
 			      
 			    </div>
 
 			    <div class="carousel-item">
-			      <img src="../img/3a.jpg" class="d-block w-100" alt="image">
+			      <img src="img/3a.jpg" class="d-block w-100" alt="image">
 			      	<div class="carousel-caption d-none d-md-block">
 			        <h5>Second slide label</h5>
 			        <p>Some representative placeholder content for the second slide.</p>

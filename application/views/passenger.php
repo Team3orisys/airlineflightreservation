@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Assignment2</title>
+        <title>pass Home</title>
             <meta charset=utf-8>
             <meta name="viewport" content="width=device-width,initial-scale=1">
             <!---Fontawesome--->
@@ -32,45 +32,29 @@
      </nav>  
  </header>
  <!--------------------menu section-------------->
- <nav class="navbar top1 navbar-expand-lg">
+ <nav class="navbar top1 navbar-expand-lg ">
     <div class="container">
       <a href="#" class="text-decoration-none text-white">TRAVEL KITE</a>  
       <div class="">
           <ul class="navbar-nav">
               <li class="nav-item"><a href="<?php echo base_url()?>main/passenger" class="nav-link">Home</a></li> 
-              <li class="nav-item"><a href="<?php echo base_url()?>main/profile" class="nav-link">View Profile</a></li>
+              <li class="nav-item"><a href="<?php echo base_url()?>main/passprofile" class="nav-link">View Profile</a></li>
               <li class="nav-item"><a href="<?php echo base_url()?>main/flight" class="nav-link">Flight Details</a></li>
               <li class="nav-item"><a href="#" class="nav-link">Notification</a></li>
               <!-- <li class="nav-item"><a href="#" class="nav-link">Portfolio</a></li>
- -->           <li class="nav-item"><a href="#" class="nav-link">Log Out  </a></li>
+ -->           <li class="nav-item"><a href="#" class="nav-link">Log Out</a                 ></li>
           </ul>
       </div>
     </div> 
  </nav>
 <!-----------------------------end-------------------->
 <!------------------------------section1------------------------->
+ 
+
 <section>
-    <div class="row">
-        <div class="container-fluid">
-<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="../img/img1.jpg" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="../img/img2.jpg" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="../img/img3.jpg" class="d-block w-100" alt="...">
-    </div>
-  </div>
-</div>
-</div>
-</div>
+
+
 </section>
-<!------------------------section end----------------------->
-
-
 
 
 
