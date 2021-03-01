@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Assignment2</title>
+        <title>update flight</title>
             <meta charset=utf-8>
             <meta name="viewport" content="width=device-width,initial-scale=1">
             <!---Fontawesome--->
@@ -45,21 +45,35 @@
      </nav>  
  </header>
  <!--------------------menu section-------------->
- <nav class="navbar top1 navbar-expand-lg">
+ <nav class="navbar top1 navbar-expand-lg menubar" >
     <div class="container">
-      <a href="#" class="text-decoration-none text-white">TRAVEL KITE</a>  
+      <a href="#" class="text-decoration-none text-primary">TRAVEL KITE</a>  
       <div class="">
-          <ul class="navbar-nav">
+          <ul class="navbar-nav ">
               <li class="nav-item"><a href="<?php echo base_url()?>main/admin" class="nav-link">Home</a></li> 
+
               <li class="nav-item"><a href="<?php echo base_url()?>main/airport" class="nav-link">Airport</a></li>
+
               <li class="nav-item"><a href="#" class="nav-link">Flight</a>
-                <ul>
-                  <li class="nav-item"><a href="<?php echo base_url()?>main/flightreg" class="nav-link">Add</a></li>
+                <ul class="submenu ">
+
+                  <li class="nav-item "><a href="<?php echo base_url()?>main/flightreg" class="nav-link">Add</a></li>
+                  
                   <li class="nav-item"><a href="<?php echo base_url()?>main/flights" class="nav-link">View</a></li>
+
                 </ul>
               </li>
-              <li class="nav-item"><a href="#" class="nav-link">Notification</a></li>
-              <li class="nav-item"><a href="#" class="nav-link">Booking</a></li>
+
+              <li class="nav-item"><a href="#" class="nav-link">            Notification</a>
+                <ul class="submenu">
+
+                  <li class="nav-item"><a href="<?php echo base_url()?>main/notification" class="nav-link">Add</a></li>
+                  <li class="nav-item"><a href="<?php echo base_url()?>main/notiadmin" class="nav-link">View</a></li>
+
+                </ul>
+              </li>
+
+              <li class="nav-item"><a href="<?php echo base_url()?>main/book" class="nav-link">Booking</a></li>
            <li class="nav-item"><a href="#" class="nav-link">Log Out </a></li>
           </ul>
       </div>
@@ -75,7 +89,7 @@
       { 
                 foreach($user_data->result() as $row1) 
         {
-            echo "fgb";
+            
         ?>
         <table>
           <tr>
@@ -113,12 +127,7 @@
             <td>
               <input type="text" name="atime" value="<?php echo $row1->atime;?>">
             </td>
-          </tr>
-            <td>Cost</td>
-            <td>
-              <input type="text" name=" cost" value="<?php echo $row1-> cost;?>">
-            </td>
-          </tr>
+          
           <tr>
             <td>Seat Capacity</td>
             <td>
@@ -143,6 +152,25 @@
               <input type="text" name="first" value="<?php echo $row1->first;?>">
             </td>
           </tr>
+          </tr>
+            <td>Business Cost</td>
+            <td>
+              <input type="text" name=" bcost" value="<?php echo $row1-> bcost;?>">
+            </td>
+          </tr>
+          </tr>
+            <td>Economy Cost</td>
+            <td>
+              <input type="text" name=" ecost" value="<?php echo $row1-> ecost;?>">
+            </td>
+          </tr>
+          </tr>
+            <td> First Cost</td>
+            <td>
+              <input type="text" name=" fcost" value="<?php echo $row1-> fcost;?>">
+            </td>
+          </tr>
+
           <tr>
             <td colspan="3" style="text-align:center;">
               <input type="hidden" name="id" value="<?php echo $row1->id;?>">

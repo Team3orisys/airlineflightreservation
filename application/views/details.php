@@ -15,16 +15,8 @@
             <!---Bootstrap5----->
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
             <!---custom style---->
-            <style>
-            	.bi
-            {
-              background-image: url('../img/b2.jpg');
-              background-size: cover; 
-              background-attachment: fixed;
-            }
-            </style>
 </head>
-<body class="bi">
+<body>
 	<?php
 
 
@@ -53,7 +45,7 @@
 
 	if(isset($no))
 {
-
+	print_r($no);
 	$d=$no;
 	if($d<10)
 	{
@@ -62,16 +54,11 @@
 	?>
 
 	<form action="<?php echo base_url()?>main/receipt" method="post">
-		<table class=" table table-primary table-stripped table-hover table-bordered mt-5 text-center">
-		<tr><td>no of seat available</td><td><input type="text" name="noseat" value=<?php echo $av;?>></td>
+		number of seat available<input type="text" name="noseat" value=<?php echo $av;?>>
 		<!-- no of traveller<input type="text" name="traveller" >
 		no of senior<input type="text" name="senior" > -->
-		<td><a href="<?php echo base_url()?>main/flightsearch" class="btn btn-secondary">Back</a></td>
-		<td>
-		<input type="submit"name="book" value="book" class="btn btn-secondary">
-	</td>
-</tr>
-</table>
+		<a href="<?php echo base_url()?>main/flightsearch" class="btn btn-secondary">Back</a>
+		<input type="submit"name="book" value="book">
  	<?php
 }
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Assignment2</title>
+        <title>Flight ADDING</title>
             <meta charset=utf-8>
             <meta name="viewport" content="width=device-width,initial-scale=1">
             <!---Fontawesome--->
@@ -60,7 +60,7 @@
                 </ul>
               </li>
 
-              <li class="nav-item"><a href="#" class="nav-link">Booking</a></li>
+              <li class="nav-item"><a href="<?php echo base_url()?>main/book" class="nav-link">Booking</a></li>
            <li class="nav-item"><a href="#" class="nav-link">Log Out </a></li>
           </ul>
       </div>
@@ -73,16 +73,16 @@
 <div class="row">
 <div class="container col-5 ms-5">
 <h3 class="text-center text-primary mt-5">ADD FLIGHTS</h3>
-<form  method="post" action="<?php echo base_url()?>main/flight" class=" ">
+<form  method="post" action="<?php echo base_url()?>main/flightreg_action" class=" ">
 
 <fieldset>
 
 
 <label class=>Airline Name</label>
-<input type="text" name="airlinename" placeholder="airlinename" required maxlength="25" pattern="[a-zA-Z]+" class="form-control">
+<input type="text" name="airlinename" placeholder="airlinename" required  class="form-control">
 
 <label class="">Departure</label>
-<input type="text" name="departure"  placeholder="departure" required maxlength="25" pattern="[a-zA-Z]+" class="form-control">
+<input type="text" name="departure"  placeholder="departure" required class="form-control">
 
 
 <label class="form-label">Arrival</label>
@@ -90,17 +90,15 @@
 
 
 <label class="">Date</label>
-<input type="date" name="date"required  pattern="[7-9]{1}[0-9]{9}" class="form-control">
+<input type="date" name="date"required   class="form-control">
  
  
 <label class="form-label">Departure Time</label>
-<input type="text" name="dtime"  required class="form-control"><br>
+<input type="time" name="dtime"  required class="form-control"><br>
 
 <label class="form-label">Arrival Time</label>
-<input type="text" name="atime"  required class="form-control"><br>
+<input type="time" name="atime"  required class="form-control"><br>
 
-<label class="form-label">Cost</label>
-<input type="text" name="cost"  required class="form-control"><br>
 
 <label class="form-label">Seat Capacity</label>
 <input type="text" name="seatcapacity"  required class="form-control"><br>
@@ -113,6 +111,13 @@
 
 <label class="form-label">First</label>
 <input type="text" name="first"  required class="form-control"><br>
+
+<label class="form-label">Business cost</label>
+<input type="text" name="bcost"  required class="form-control"><br>
+<label class="form-label">Economy cost</label>
+<input type="text" name="ecost"  required class="form-control"><br>
+<label class="form-label">First</label>
+<input type="text" name="fcost"  required class="form-control"><br>
 
 <div class="container text-center">
 

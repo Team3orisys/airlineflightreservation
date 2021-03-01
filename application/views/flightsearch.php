@@ -47,12 +47,6 @@ body {font-family: Arial, Helvetica, sans-serif;}
 background-color:#5c00e6;
 
 }
-.bi
-            {
-              background-image: url('../img/b2.jpg');
-              background-size: cover; 
-              background-attachment: fixed;
-            }
 
 /* Add responsiveness - display the form controls vertically instead of horizontally on screens that are less than 800px wide */
 @media (max-width: 800px) {
@@ -67,7 +61,7 @@ background-color:#5c00e6;
 }
 </style>
 </head>
-<body class="bi">
+<body>
 <nav class="navbar top1 navbar-expand-lg ">
     <div class="container">
       <a href="#" class="text-decoration-none text-white">TRAVEL KITE</a>  
@@ -78,7 +72,7 @@ background-color:#5c00e6;
               <li class="nav-item"><a href="<?php echo base_url()?>main/flightsearch" class="nav-link text-white">Search Flight</a></li>
               <li class="nav-item"><a href="<?php echo base_url()?>main/notiuser" class="nav-link text-white">Notification</a></li>
               <!-- <li class="nav-item"><a href="#" class="nav-link">Portfolio</a></li>
- -->           <li class="nav-item"><a href="<?php echo base_url()?>main/logout" class="nav-link text-white">Log Out</a                 ></li>
+ -->           <li class="nav-item"><a href="#" class="nav-link text-white">Log Out</a                 ></li>
           </ul>
       </div>
     </div> 
@@ -86,8 +80,7 @@ background-color:#5c00e6;
 
 
 	<form method="post" action="<?php echo base_url()?>main/searchaction">
-<table class=" form-inline
-table table-primary table-stripped table-hover table-bordered mt-5 text-center">
+<table class="form-inline">
 <tr>
 	<td>From</td>
 	<td><input list="location" name="departure"placeholder="location">

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Assignment2</title>
+        <title>flight view by admin</title>
             <meta charset=utf-8>
             <meta name="viewport" content="width=device-width,initial-scale=1">
             <!---Fontawesome--->
@@ -73,7 +73,7 @@
                 </ul>
               </li>
 
-              <li class="nav-item"><a href="#" class="nav-link">Booking</a></li>
+              <li class="nav-item"><a href="<?php echo base_url()?>main/book" class="nav-link">Booking</a></li>
            <li class="nav-item"><a href="#" class="nav-link">Log Out </a></li>
           </ul>
       </div>
@@ -86,7 +86,17 @@
  <table class="text-center">
       <tr>
         <th>Airline Name</th><th>Departure</th><th>Arrival</th><th>Date</th><th>Departure Time</th>
-        <th>Arrival Time</th><th>Cost</th><th>Seating Capacity</th><th>Bussiness</th><th>Economy</th><th>First</th><th colspan="2">Action</th>
+        <th>Arrival Time</th>
+        <th>Seating Capacity</th>
+        <th>Bussiness</th>
+        <th>Economy</th>
+        <th>First</th>
+        <th>Bussiness Cost</th>
+        <th>Economy Cost</th>
+        <th>First Cost</th>
+
+        <th colspan="2">Action</th>
+
       </tr>
       <?php
         if($n->num_rows()>0)
@@ -101,11 +111,14 @@
         <td><?php echo $row->date; ?></td>
         <td><?php echo $row->dtime; ?></td>
         <td><?php echo $row->atime; ?></td>
-        <td><?php echo $row->cost; ?></td>
         <td><?php echo $row->seatcapacity; ?></td>
         <td><?php echo $row->business; ?></td>
         <td><?php echo $row->economy; ?></td> 
-        <td><?php echo $row->first; ?></td> 
+        <td><?php echo $row->first; ?></td>
+        <td><?php echo $row->bcost; ?></td>
+        <td><?php echo $row->ecost; ?></td> 
+        <td><?php echo $row->fcost; ?></td>
+
         <input type="hidden" name="id" value="<?php echo $row->id;?>">
         <td><a href="<?php echo base_url()?>main/updateflight/<?php echo $row->id;?>" class="text-decoration-none text-white ">Update</a></td>
         <td><a href="<?php echo base_url()?>main/deleteflight/<?php echo $row->id;?>" class="text-decoration-none text-white ">Delete</a></td>

@@ -16,16 +16,10 @@
             		width:500px;
             		height: 600px;
             	}
-            	/*.bi
-            {
-              background-image: url('../img/b2.jpg');
-              background-size: cover; 
-              background-attachment: fixed;
-            }*/
             </style>
 
 </head>
-<body class="bi">
+<body>
 	<form action="<?php echo base_url()?>main/payment" method="" class="form-control">
 		<center><fieldset>
 			<?php

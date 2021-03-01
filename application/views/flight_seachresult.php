@@ -22,33 +22,9 @@
       color: white;
 
     }
-    .bi
-            {
-              background-image: url('../img/b2.jpg');
-              background-size: cover; 
-              background-attachment: fixed;
-            }
 </style>
     
  <!---------------------section---------------------->
- <body class="bi">
-  
-<nav class="navbar top1 navbar-expand-lg ">
-    <div class="container">
-      <a href="#" class="text-decoration-none text-white">TRAVEL KITE</a>  
-      <div >
-          <ul class="navbar-nav">
-              <li class="nav-item"><a href="<?php echo base_url()?>main/passenger" class="nav-link text-white">Home</a></li> 
-              <li class="nav-item "><a href="<?php echo base_url()?>main/passprofile" class="nav-link text-white">View Profile</a></li>
-              <li class="nav-item"><a href="<?php echo base_url()?>main/flightsearch" class="nav-link text-white">Search Flight</a></li>
-              <li class="nav-item"><a href="<?php echo base_url()?>main/notiuser" class="nav-link text-white">Notification</a></li>
-              <!-- <li class="nav-item"><a href="#" class="nav-link">Portfolio</a></li>
- -->           <li class="nav-item"><a href="<?php echo base_url()?>main/logout" class="nav-link text-white">Log Out</a                 ></li>
-          </ul>
-      </div>
-    </div> 
- </nav>
-
  <form action="<?php echo base_url()?>main/flights" method="post">
  <center><h1 class="py-2">Flight details</h1></center>
  <table class="text-center">
