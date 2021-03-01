@@ -18,8 +18,8 @@
 
 			<div class=""></div>
 		<?php
-				if($n->num_rows()>0)
-				{
+				 if($n->num_rows()>0)
+				 {
 					foreach($n->result() as $row)
 					{
 				?>
@@ -73,8 +73,8 @@
 			</div>
 
 			<div>
-			<label>Total Amount:</label>
-					<label></label>
+			<!-- <label>Total Amount:</label>
+					<label></label> -->
 			</div>
 
 			<?php
