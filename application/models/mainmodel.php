@@ -319,6 +319,12 @@ public function ticket($id,$fid,$s)
 	return $qry;
 
 }
+public function airport_insert($a)
+{
+$this->db->insert("airport",$a);
+}
+
+
 
 }
 ?>
