@@ -33,7 +33,7 @@
                 </ul>
               </li>
 
-              <li class="nav-item"><a href="#" class="nav-link">            Notification</a>
+              <li class="nav-item"><a href="#" class="nav-link">Notification</a>
                 <ul class="submenu">
 
                   <li class="nav-item"><a href="<?php echo base_url()?>main/notification" class="nav-link">Add</a></li>
@@ -43,15 +43,15 @@
               </li>
 
               <li class="nav-item"><a href="#" class="nav-link">Booking</a></li>
-           <li class="nav-item"><a href="#" class="nav-link">Log Out </a></li>
+           <li class="nav-item"><a href="<?php echo base_url()?>main/logout" class="nav-link">Log Out </a></li>
           </ul>
       </div>
     </div> 
  </nav>
 
 
-	<h1 class="text-white text-center py-5">NOTIFICATIONS</h1>
-	<table class="table table-hover table-bordered border-primary text-center table-success mt-2 ">
+	<h2 class="text-primary text-center py-3">NOTIFICATIONS</h2>
+	<table class="table table-hover table-bordered border-primary text-center table-success mt-5 ">
 		<thead>
 			<tr class>
 				<th> Flight ID</th>
@@ -73,9 +73,9 @@
 							<td><?php echo $row->id;?></td>
 							<td><?php echo $row->airlinename;?></td>
 							<td><?php echo $row->notification?></td>
-							<td><a href="<?php echo base_url()?>main/notify_delete/<?php echo $row->id;?>" class="text-decoration-none btn-outline-danger">Delete</a></td>
+							<td><a href="<?php echo base_url()?>main/notify_delete/<?php echo $row->n_id;?>" class="text-decoration-none btn-outline-danger">Delete</a></td>
 
-							<td><a href="<?php echo base_url()?>main/admin_update/<?php echo $row->id;?>" class="text-decoration-none btn-outline-success ">Update</a></td>
+							<td><a href="<?php echo base_url()?>main/admin_update/<?php echo $row->n_id;?>" class="text-decoration-none btn-outline-success ">Update</a></td>
 							</tr>
 			<?php
 				}

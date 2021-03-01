@@ -43,7 +43,7 @@
  <!--------------------menu section-------------->
  <nav class="navbar top1 navbar-expand-lg menubar" >
     <div class="container">
-      <a href="#" class="text-decoration-none text-white">TRAVEL KITE</a>  
+      <a href="#" class="text-decoration-none text-primary">TRAVEL KITE</a>  
       <div class="">
           <ul class="navbar-nav ">
               <li class="nav-item"><a href="<?php echo base_url()?>main/admin" class="nav-link">Home</a></li> 
@@ -60,7 +60,7 @@
                 </ul>
               </li>
 
-              <li class="nav-item"><a href="#" class="nav-link">            Notification</a>
+              <li class="nav-item"><a href="#" class="nav-link"> Notification</a>
                 <ul class="submenu">
 
                   <li class="nav-item"><a href="<?php echo base_url()?>main/notification" class="nav-link">Add</a></li>
@@ -70,7 +70,8 @@
               </li>
 
               <li class="nav-item"><a href="#" class="nav-link">Booking</a></li>
-           <li class="nav-item"><a href="#" class="nav-link">Log Out </a></li>
+              <li class="nav-item"><a href="<?php echo base_url()?>main/discount" class="nav-link">Flight Discount</a></li>
+           <li class="nav-item"><a href="<?php echo base_url()?>main/logout" class="nav-link">Log Out </a></li>
           </ul>
       </div>
     </div> 
