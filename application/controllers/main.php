@@ -26,7 +26,6 @@ class main extends CI_Controller {
 
 
 	public function register()
-
 {
 	$this->load->view('register');
 }
@@ -119,15 +118,23 @@ redirect('main/login','refresh');
 
 /*passenger home page*/
 public function passenger()
-
 {
-$this->load->view('passenger');
+	if($_SESSION['logged_in']==true && $_SESSION['utype']=='1')
+	{
+		$this->load->view('passenger');
+	}
+	else
+	{
+		redirect('main/login','refresh');
+	}
 }
 
 /*  passenger view of profile  for updation*/
 public function passprofile()
 
 {
+	if($_SESSION['logged_in']==true && $_SESSION['utype']=='1')
+	{
 
 		
 		$this->load->model('mainmodel');
@@ -136,7 +143,14 @@ public function passprofile()
 		$this->load->view('passprofile',$data);
 
 	}
+else
+{
+	redirect('main/login','refresh');
+}
+}
 	public function updatedetails1()
+	{
+		if($_SESSION['logged_in']==true && $_SESSION['utype']=='1')
 	{
 		$a=array("fname"=>$this->input->post("fname"),
 			"lname"=>$this->input->post("lname"),
@@ -154,6 +168,11 @@ public function passprofile()
 			$this->mainmodel->updates($a,$b,$id);
 			redirect('main/passprofile','refresh');
 		}
+	}
+	else
+	{
+		redirect('main/login','refresh');
+	}
 
 	}
 
@@ -162,10 +181,19 @@ public function passprofile()
 /******flight search of passenger starts*/
  public function flightsearch()
     {
+    	if($_SESSION['logged_in']==true && $_SESSION['utype']=='1')
+		{
         $this->load->view('flightsearch');
+    }
+    else
+    {
+    	redirect('main/login','refresh');
+    }
     }
     public function searchaction()
     {
+    	if($_SESSION['logged_in']==true && $_SESSION['utype']=='1')
+	{
         $this->load->model('mainmodel');
         $d=date('y-m-d');
         $this->mainmodel->deletedate($d);
@@ -175,8 +203,12 @@ public function passprofile()
         $data['n']=$this->mainmodel->uviewflight($dep,$arr,$date);
         $this->load->view('flight_seachresult',$data);
 
-
+}
+else
+{
+	redirect('main/login','refresh');
     }
+}
   
 // public function flightsss()
 
@@ -190,19 +222,26 @@ public function passprofile()
 
 //admin adding notification
 public function notification()
-
 {
+	if($_SESSION['logged_in']==true && $_SESSION['utype']=='0')
+	{
 		$this->load->model('mainmodel');
 		$data['n']=$this->mainmodel->flightname();
 		$this->load->view('notification',$data); 
+	}
+	else
+	{
+		redirect('main/login','refresh');
+	}
 }
 
 //action
 public function notify_action()
 	{
+		if($_SESSION['logged_in']==true && $_SESSION['utype']=='0')
+		{
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules("noti","notification",'required')
-		;
+		$this->form_validation->set_rules("noti","notification",'required');
 
 
 		
@@ -219,6 +258,11 @@ public function notify_action()
 			redirect('main/notification','refresh');
 		}	
 	}
+	else
+	{
+		redirect('main/login','refresh');
+	}
+	}
 
 //insertion of notification ends
 
@@ -226,22 +270,35 @@ public function notify_action()
 
 	public function notiadmin()
 	{
-		
+		if($_SESSION['logged_in']==true && $_SESSION['utype']=='0')
+			{
 		$this->load->model('mainmodel');
 		$date=date('y-m-d');// for auto delete of notification
  		$this->mainmodel->notidelete($date);
 		$data['n']=$this->mainmodel->admin_notify();
 		$this->load->view('admin_notify_view',$data);
+			}
+			else
+			{
+				redirect('main/login','refresh');
+			}
 
 	}
 
 	/*notification:admin delete*/
 	public function notify_delete()
 	{
+		if($_SESSION['logged_in']==true && $_SESSION['utype']=='0')
+			{
 		$id=$this->uri->segment(3);
 		$this->load->model('mainmodel');
 		$this->mainmodel->admin_delete($id);
 		redirect('main/notiadmin','refresh');
+	}
+	else
+	{
+		redirect('main/login','refresh');
+	}
 	}
 
 	/*notification :admin update*/
@@ -249,7 +306,8 @@ public function notify_action()
 
 	public function admin_update()
 	{
-		
+		if($_SESSION['logged_in']==true && $_SESSION['utype']=='0')
+			{
 		$a=array("notification"=>$this->input->post("noti"));
 		$this->load->model('mainmodel');
 		$id=$this->uri->segment(3);
@@ -263,12 +321,24 @@ public function notify_action()
 			redirect('main/notiadmin','refresh');
 		}
 	}
+	else
+	{
+		redirect('main/login','refresh');
+	}
+	}
 /*user view of notification*/
 	public function notiuser()
+	{
+		if($_SESSION['logged_in']==true && $_SESSION['utype']=='1')
 	{
 		$this->load->model('mainmodel');
 		$data['n']=$this->mainmodel->user_notify();
 		$this->load->view('notify_table_view',$data);
+	}
+	else
+	{
+		redirect('main/login','refresh');
+	}
 	} 
  
 /*------------------notification ends-----------------*/
@@ -278,26 +348,55 @@ public function notify_action()
 public function admin()
 
 {
-$this->load->view('admin')
-;}
+	if($_SESSION['logged_in']==true && $_SESSION['utype']=='0')
+	{
+		$this->load->view('admin');
+	}
+	else
+	{
+		redirect('main/login','refresh');
+	}
+}
 
 /* ------------ filght -------------------------------*/
 
 
 public function flights()
 {
+	if($_SESSION['logged_in']==true && $_SESSION['utype']=='0')
+	{
 	$this->load->model('mainmodel');
 	$data['n']=$this->mainmodel->flights();
 	$this->load->view('flight',$data);
+}
+else
+{
+	redirect('main/login','refresh');
+}
 }
 
 public function flightreg()
 
 {
-	$this->load->view('flightreg');
+	if($_SESSION['logged_in']==true && $_SESSION['utype']=='0')
+			{
+
+			$this->load->view('flightreg');
+			}
+
+	else
+	{
+		redirect(base_url().'main/login');
+	}
 }
- public function flightreg_action()
- {
+ 	public function flightreg_action()
+ 	{
+ 		if($_SESSION['logged_in']==true && $_SESSION['utype']=='0')
+			{
+
+				$this->load->view('flightreg');
+			
+
 
  	$this->load->library('form_validation');
 		$this->form_validation->set_rules("airlinename","airlinename",'required');
@@ -340,6 +439,12 @@ public function flightreg()
 		
 
 	    }
+	}
+	    else
+	{
+		redirect(base_url().'main/login');
+	}
+	
 
 
  }
@@ -349,15 +454,24 @@ public function flightreg()
 
 public function updateflight()
 {
+	if($_SESSION['logged_in']==true && $_SESSION['utype']=='0')
+			{
 	$this->load->model('mainmodel');
 	$id=$this->uri->segment(3);
 	$data['user_data']=$this->mainmodel->fupdate($id);
 	$this->load->view('updateflight',$data);
 }
+else
+{
+	redirect('main/login','refresh');
+}
+}
 
 
 public function flightupdate()
 	{
+		if($_SESSION['logged_in']==true && $_SESSION['utype']=='0')
+			{
 		$a=array("airlinename"=>$this->input->post("airlinename"),
 			"departure"=>$this->input->post("departure"),
 			"arrival"=>$this->input->post("arrival"),
@@ -379,14 +493,26 @@ public function flightupdate()
 			$this->mainmodel->updateflight($a,$id);
 			redirect('main/flights','refresh');
 		}
+	}
+	else
+	{
+		redirect('main/login','refresh');
+	}
 
 	}
 
  	public function deleteflight()
  	{
+ 		if($_SESSION['logged_in']==true && $_SESSION['utype']=='0')
+			{
  		$id=$this->session->id;
  		$this->load->model('mainmodel');
 		$this->mainmodel->flightdelete($id);
+	}
+	else
+	{
+		redirect('main/login','refresh');
+	}
  	}
 
 
@@ -394,7 +520,6 @@ public function flightupdate()
 
  	public function book()
     {
-    	//$id=$this->session->flightid;
 
 
     	$this->load->model('mainmodel');
@@ -438,17 +563,25 @@ public function flightupdate()
     /*** discount added by admin*/
     public function discount()
     {
+    	if($_SESSION['logged_in']==true && $_SESSION['utype']=='0')
+			{
 
     	$this->load->model('mainmodel');
 		$data['n']=$this->mainmodel->flightname();
 		$this->load->view('discount',$data); 	
+	}
+	else
+	{
+		redirect('main/login','refresh');
+	}
     }
 
  public function discount_action()
     {
+    	if($_SESSION['logged_in']==true && $_SESSION['utype']=='0')
+			{
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules("discount","discount",'required')
-		;
+		$this->form_validation->set_rules("discount","discount",'required');
 
 
 		
@@ -464,6 +597,11 @@ public function flightupdate()
 			$this->mainmodel->mdiscount($n);
 			redirect('main/discount','refresh');
 		}	
+	}
+	else
+	{
+		redirect('main/login','refresh');
+	}
 	}
 
 //insertion of
@@ -508,7 +646,7 @@ $cls=$this->input->post("seat");
     		//print_r($u);
     		$b=$u['no'];
     		$seat='b'.$b;
-    		//echo $seat;
+    		echo $seat;
     		$this->load->view('details',$u);
     		//$this->load->view('conform',$u);
 
@@ -517,8 +655,6 @@ $cls=$this->input->post("seat");
     		// 	$postData=$this->input->post();
     		// 	echo "<b>name:</b>".$postData['traveller']."</br>";
     		// }
-
-
     	}
 
     	//economy 
@@ -537,11 +673,12 @@ $cls=$this->input->post("seat");
     	if($cls=='first')
     	{
     		$u['no']=$this->mainmodel->seat($did,$cls);
-    		$f=$u['0'];
+    		$f=$u['no'];
     		$seat='f'.$f;
     		$this->load->view('details',$u);
     		
     	}
+
 
     	/*session to store seat number, class*/
     		$this->load->library(array('session'));
@@ -551,6 +688,7 @@ $cls=$this->input->post("seat");
 			$c=$this->session->class_type;
 			//echo $c;
 			/****/
+
 
     	$a=array("flight"=>$fid,"login_id"=>$id,'payment_status'=>'0',"class"=>$this->input->post("seat"),"seat_no"=>$seat);
 	$this->mainmodel->bookinsert($a);
@@ -572,6 +710,8 @@ $this->load->view('payment');
 }
 
 /**********************payment ends**********************************/
+
+
 /*ticket view*/
 
 public function ticket()
@@ -588,5 +728,63 @@ public function ticket()
 
 
 
+
+
+
+/****logout***********/
+public function logout()
+    {
+        $data=new stdClass();
+        if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']===true)
+        {
+            foreach ($_SESSION as $key => $value)
+            {
+               unset($_SESSION[$key]);
+            }
+            $this->session->set_flashdata('logout_notification','logged_out');
+            redirect('/','refresh');
+        }
+        else{
+            redirect('/','refresh');
+        }
+    }
+    /**********logout end**************/
+  public function airport()
+{
+$this->load->view('airportdetails');
+}
+public function airport_action()
+{
+$this->load->library('form_validation');
+$this->form_validation->set_rules("aname","aname",'required');
+$this->form_validation->set_rules("abbreviation","abbreviation",'required');
+$this->form_validation->set_rules("city","city",'required');
+$this->form_validation->set_rules("state","state",'required');
+$this->form_validation->set_rules("zipcode","zipcode",'required');
+$this->form_validation->set_rules("timezone","timezone",'required');
+
+
+
+if($this->form_validation->run())
+{
+$this->load->model('mainmodel');
+
+$a=array("airportname"=>$this->input->post("aname"),
+"abbreviation"=>$this->input->post("abbreviation"),
+"city"=>$this->input->post("city"),
+"state"=>$this->input->post("state"),
+"zipcode"=>$this->input->post("zipcode"),
+"timezone"=>$this->input->post("timezone"));
+
+$this->mainmodel->airport_insert($a);
+redirect(base_url().'main/airport');
+
+   }
+
+}
+public function pay()
+{
+	$this->load->view('payment_success');
+}
 
 }
