@@ -222,11 +222,15 @@ return $qry;
 }
 
 /*booking view*/
-public function bookview($id)
+public function bookview()
 {
 		$this->db->select('*');
-		$this->db->where("id",$id);
-		$qry=$this->db->get("flight");
+		
+		$qry=$this->db->join('register','booking.login_id=register.loginid','inner');
+		
+		$qry=$this->db->join('flight','booking.flight=flight.id','inner');
+		$qry=$this->db->get("booking");
+		
 		return $qry;
 
 }
@@ -297,7 +301,24 @@ public function receipt($id,$fid)
 
 
 }
+public function ticket($id,$fid,$s)
+{
 
+	$this->db->select('*');
+	$this->db->join('register','register.loginid=booking.login_id','inner');
+	$this->db->where('booking.login_id',$id);
+	$this->db->join('flight','flight.id=booking.flight','inner');
+	$this->db->where('booking.flight',$fid);
+
+	$this->db->join('discount','discount.f_id=booking.flight','inner');
+	$this->db->where('booking.flight',$fid);
+	$this->db->where('booking.seat_no',$s);
+
+	$qry=$this->db->get('booking');
+
+	return $qry;
+
+}
 
 }
 ?>
