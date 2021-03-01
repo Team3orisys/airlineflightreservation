@@ -114,12 +114,20 @@ public function  admin_notify()
 		$this->db->delete("notification");
 		
 		}
-
+//user view of notification//
+		public function  user_notify()
+		{
+		$this->db->select('*');
+		$this->db->join('flight','flight.id=notification.f_id','inner');
+		$qry=$this->db->get("notification");
+		return $qry;
+	
+		}
 /*-------------notification ends------------------------*/
 
 /*-------------flight starts-----------------*/
 
-//flight insert
+//flight insert by admin
 public function flightregist($a)
 {
 	
@@ -128,7 +136,7 @@ public function flightregist($a)
 }
 
 
-//flight view
+//flight view of admin
 public function flights()
 {
 	$this->db->select('*');
@@ -136,7 +144,7 @@ public function flights()
 	return $qry;
 
 }
-//flight upadte
+//flight upadte of admin
 public function fupdate($id)
 	{
 		
@@ -156,12 +164,20 @@ public function updateflight($a,$id)
 
 
 	}
+	/*flight delete :admin*/
 
 public function flightdelete($id)
 {
 	$this->db->select('*');
     $this->db->where("id",$id);
      $this->db->delete("flight");
+}
+
+/*flight auto delete*/
+public function deletedate($d)
+{
+$this->db->where('date<',$d);
+$this->db->delete("flight");
 }
 
 /*passenger profile  updation start*************/
@@ -190,11 +206,97 @@ public function updateform($id)
 	} 
 
 
-/*----------------profile updation  ends-------------*/
+/*---profile updation  ends------*/
 
 
 
+/*user flight search*/
+public function uviewflight($dep,$arr,$date)
+{
+$this->db->select('*');
+$this->db->where("departure",$dep);
+$this->db->where("arrival",$arr);
+$this->db->where("date",$date);
+$qry=$this->db->get("flight");
+return $qry;
+}
 
+/*booking view*/
+public function bookview($id)
+{
+		$this->db->select('*');
+		$this->db->where("id",$id);
+		$qry=$this->db->get("flight");
+		return $qry;
+
+}
+
+//bform
+public function mbform($id)
+{
+		$this->db->select('*');
+		$this->db->where("id",$id);
+		$qry=$this->db->get("flight");
+		return $qry;
+
+}
+
+//username
+public function username($id)
+{
+	$this->db->select('*');
+	$this->db->where("loginid",$id);
+	$qry=$this->db->get("register");
+
+	return $qry;
+
+
+}
+
+//booking insertion
+public function bookinsert($a)
+{
+	$this->db->insert("booking",$a);
+
+}
+public function seat($id,$cls){
+	$this->db->select('*');
+	$this->db->join('flight','flight.id=booking.flight','inner');
+	$qry=$this->db->where('booking.flight',$id);
+	$qry=$this->db->where('booking.class',$cls);
+
+	$qry=$this->db->get('booking');
+	//$qry=$this->db->count_all_results('');
+
+	
+	return $qry->num_rows(); 
+
+}
+
+
+/* **discount table:discount adding*/
+public function mdiscount($n)
+{
+	$this->db->insert("discount",$n);
+}
+
+public function receipt($id,$fid)
+{
+	$this->db->select('*');
+	$this->db->join('register','register.loginid=booking.login_id','inner');
+	$this->db->where('booking.login_id',$id);
+	$this->db->join('flight','flight.id=booking.flight','inner');
+	$this->db->where('booking.flight',$fid);
+
+	$this->db->join('discount','discount.f_id=booking.flight','inner');
+	$this->db->where('booking.flight',$fid);
+	$qry=$this->db->get('booking');
+
+	return $qry;
+
+
+
+}
 
 
 }
